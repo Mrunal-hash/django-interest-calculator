@@ -1,0 +1,125 @@
+{% extends 'base.html' %}
+  {% block body_block %}
+  {% load static %}
+
+  <!-- breadcrumb for the sites -->
+  <div class="container mt-3">
+    <nav style="--bs-breadcrumb-divider: '>';color: #011638;">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item fs-6 fw-medium"><a href="{% url 'index' %}">Home</a></li>
+        <li class="breadcrumb-item active fs-6 fw-medium" style="color: #011638">RD Calculator</li>
+      </ol>
+    </nav>
+  </div>
+  <!-- end of breadcrumb -->
+
+  <main>
+        <div class="container mt-5">
+            <div class="row">
+              <!-- Input section for calculating RD -->
+                <div class="col-md-8 d-flex">
+                    <div class="card shadow p-4 equal-height w-100" style="background-color: #fbfbfb; color: #011638;">
+                        <h2 class="text-center fs-3 fw-semibold">RD Calculator</h2>
+                        <form id="interestForm" class="flex-grow-1">
+                          <!-- investment amount -->
+                          <div class="mb-3" oninput="calculateInterest()">
+                            <label for="principal" class="form-label fs-5 fw-medium">Monthly Installment:</label>
+                            <input type="number" class="form-control" id="principal" value="1000" required>
+                            <div class="text-danger" id="principalError"></div>
+                          </div>
+                          <!-- interest rate -->
+                          <div class="mb-3" oninput="calculateInterest()">
+                              <label for="rate" class="form-label fs-5 fw-medium">Interest rate (in %):</label>
+                              <div style="display: flex;">
+                                <div class="col-9">
+                                  <div class="relative slider-container mx-2">
+                                    <input type="range" style="width: 100%; height: 8px;" id="rate" min="0" max="20" step="0.1" value="1">
+                                  </div>
+                                </div>
+                                <div class="col-3 w-1 px-2">
+                                  <input type="number" id="outputRate" class="border rounded border-grey-300 h-12 focus:outline-none px-3 py-1 w-100" min="0" max="20" step="0.1" value="1">   
+                                </div>
+                              </div>
+                              <div class="text-danger" id="rateError"></div>
+                          </div>
+                          <!-- Time period -->
+                          <div class="mb-3" oninput="calculateInterest()">
+                              <label for="time" class="form-label fs-5 fw-medium">Time Period (in years):</label>
+                              <div style="display: flex;">
+                                <div class="col-9">
+                                  <div class="relative slider-container mx-2">
+                                    <input type="range" style="width: 100%; height: 8px;" id="time" min="1" max="30" step="1" value="1">
+                                  </div>
+                                </div>
+                                <div class="col-3 w-1 px-2">
+                                  <input type="number" id="outputTime" class="border rounded border-grey-300 h-12 focus:outline-none px-3 py-1 w-100" min="1" max="30" value="1" step="1">   
+                                </div>
+                              </div>
+                              <div class="text-danger" id="timeError"></div>
+                          </div>
+                            <!-- calculate function -->
+                            <!-- <button type="button" class="btn btn-primary w-100" onclick="calculateInterest()">Calculate</button> -->
+                        </form>
+                    </div>
+                </div>
+                <!-- Doughnut chart representation -->
+                <div class="col-md-4 d-flex">
+                    <div class="card shadow p-4 equal-height w-100" style="background-color: #fbfbfb; color: #011638;">
+                        <div class="flex-grow-1 d-flex align-items-center justify-content-center">
+                          <canvas id="interestChart" class="mt-4"></canvas>
+                        </div>
+                        <div class="text-center mt-4">
+                          <p class="fs-5 fw-medium">Invested Amount: ₹<span id="displayPrincipal">10000</span></p>
+                          <p class="fs-5 fw-medium">Interest: ₹<span id="displayInterest">1000</span></p>
+                          <p class="fs-5 fw-medium">RD Maturity Amount: ₹<span id="displayTotal">11000</span></p>
+                      </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+  </main>
+
+  <!-- details section with other calculator links -->
+  <section>
+    <div class="container mt-5">
+      <div class="row">
+        <!-- Information on Simple interest -->
+        <div class="col-md-8 d-flex">
+          <div class="card shadow w-100">
+            <div class="container text-start mt-4" style="color:#011638;">
+              <p class="fs-4 fw-semibold text-capitalize">What is RD?</h3>
+              <p class="fs-6 fw-medium lh-sm">RD stands for recurring deposit, which is a type of term deposit that allows people to save money by making regular contributions. RDs are offered by banks and financial institutions. Below is its mathematical formula:</p>
+              <p class="fs-5 fw-medium fst-italic text-uppercase">M = R[(1+i)<sup>n</sup>-1]/(1-(1+i)<sup>-1/3</sup>)</p>
+                <ul>
+                  <li class="text-capitalize">R = Monthly Installments</li>
+                  <li class="text-capitalize">i = interest rate/400</li>
+                  <li class="text-capitalize">n = number of quarters</li>
+                  <li class="text-capitalize">M = maturity amount</li>
+                </ul>
+              <p class="fs-5 fw-medium fst-italic">Interest = A - P</p>
+            </div>    
+          </div>
+        </div>
+        <!-- Links to various other calculators -->
+        <div class="col-md-4 d-flex">
+          <div class="card shadow w-100">
+            <div class="container text-start mt-4" style="color:#011638;">
+              <p class="fs-4 fw-medium"><strong>Other Calculators</strong></h4>
+                <p><a href="{% url 'compound' %}" class="nav-link fs-6 fw-medium" onmouseover="this.style.color='blue'" onmouseout="this.style.color='#011638'">Compound Interest</a></p>
+                <p><a href="{% url 'ppf' %}" class="nav-link fs-6 fw-medium" onmouseover="this.style.color='blue'" onmouseout="this.style.color='#011638'">PPF Calculator</a></p>
+                <p><a href="{% url 'simple' %}" class="nav-link fs-6 fw-medium" onmouseover="this.style.color='blue'" onmouseout="this.style.color='#011638'">Simple Interest</a></p>
+                <p><a href="{% url 'sip' %}" class="nav-link fs-6 fw-medium" onmouseover="this.style.color='blue'" onmouseout="this.style.color='#011638'">SIP Calculator</a></p>
+                <p><a href="{% url 'fd' %}" class="nav-link fs-6 fw-medium" onmouseover="this.style.color='blue'" onmouseout="this.style.color='#011638'">FD Calculator</a></p>
+                <p><a href="{% url 'emi' %}" class="nav-link fs-6 fw-medium" onmouseover="this.style.color='blue'" onmouseout="this.style.color='#011638'">EMI Calculator</a></p>
+                <p><a href="{% url 'lumpsum' %}" class="nav-link fs-6 fw-medium" onmouseover="this.style.color='blue'" onmouseout="this.style.color='#011638'">Lumpsum Calculator</a></p>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <script src="{% static '/js/rdCalculator.js' %}"></script>
+
+  {% endblock %}

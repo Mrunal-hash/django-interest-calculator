@@ -1,0 +1,52 @@
+.third-line-ellipses {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.first-line-ellipses {
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.static{
+  background-color: #011638; 
+  color: #F1ECEC;
+}
+.dropdown:hover>.dropdown-menu {
+  display: block;
+}
+
+.dropdown>.dropdown-toggle:active {
+  /*Without this, clicking will make it sticky*/
+  pointer-events: none;
+}
+
+/* Style the subnav links */
+.dropdown-menu a {
+  float: left;
+  color:#F1ECEC;
+  text-decoration: none;
+}
+
+.dropdown-menu{
+  background-color: #011638;
+}
+
+/* Add a grey background color on hover */
+.dropdown-menu a:hover {
+  color:#F1ECEC;
+  background-color: #7d7e81;
+}
+
+/* When you move the mouse over the subnav container, open the subnav content */
+.dropdown:hover .dropdown-menu {
+  display: block;
+}
+
+.equal-height {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}

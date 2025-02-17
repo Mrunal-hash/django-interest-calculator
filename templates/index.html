@@ -1,0 +1,152 @@
+{% extends 'base.html' %}
+  {% block body_block %}
+  {% load static %}
+  <style>
+    .card{
+          background-color: #fbfbfb;
+          background-image: url("{% static '/img/index1.jpeg' %}");
+          background-position: bottom right;
+          background-repeat: no-repeat;
+          background-size: 50%;
+          color: #011638;
+        }
+  </style>
+
+  <!-- main body -->
+    <main>
+
+      <section id="products">
+        <div class="container">
+        <div class="row mt-5 py-1">
+
+          <!-- Simple interest -->
+          <div class="col-sm-6 mb-3 mb-sm-0">
+          <a href="{% url 'simple' %}" style="text-decoration: none">
+            <div class="card">
+              <div class="card-body"  style="border-radius: 10px;">
+                <h3 class="card-title first-line-ellipses">Simple Interest</h3>
+                <div class="card-text td-inline-block third-line-ellipses">
+                  The rate at which you borrow or lend money is called the simple interest. If a borrower takes money from a lender, an extra amount of money is paid back to the lender. The borrowed money which is given for a specific period is called the principal. The extra amount which is paid back to the lender for using the money is called the interest.
+                </div>
+              </div>
+            </div>
+          </a>
+          </div>
+
+          <!-- Compound interest -->
+          <div class="col-sm-6">
+            <a href="{% url 'compound' %}" style="text-decoration: none">
+              <div class="card">
+                <div class="card-body" style="border-radius: 10px;">
+                  <h3 class="card-title first-line-ellipses">Compound Interest</h3>
+                  <div class="card-text td-inline-block third-line-ellipses">
+                    Compound interest is the interest on interest. In simple terms, the addition of interest to the principal sum of the loan or deposit is called compound interest. If you have an investment account, you earn money on your interest. The interest that you earn is reinvested, instead of paying it out. If you are repaying a loan that charges compound interest, you are paying interest on the interest. If you earn compound interest on your investment, it grows without any further deposits. You may increase the deposits to raise the efficacy of the compound interest.
+                  </div>
+                </div>
+              </div>
+            </a>
+          </div>
+
+        </div>
+
+
+        <div class="row mt-2 py-1">
+
+          <!-- FD calculator -->
+          <div class="col-sm-6 mb-3 mb-sm-0">
+            <a href="{% url 'fd' %}" style="text-decoration: none">
+              <div class="card">
+                <div class="card-body" style="border-radius: 10px;">
+                  <h3 class="card-title first-line-ellipses">FD Calculator</h3>
+                  <div class="card-text td-inline-block third-line-ellipses">
+                    FD or Fixed Deposits are long-term investment tool which helps investors save money for the long term. Investors can choose a fixed tenure for which the deposit will be kept with the bank. In general, FD investments are better for those looking for long-term wealth creation as they offer high interest rates as compared to savings accounts.
+                  </div>
+                </div>
+              </div>
+            </a>
+          </div>
+
+          <!-- PPF calculator -->
+          <div class="col-sm-6">
+            <a href="{% url 'ppf' %}" style="text-decoration: none">
+              <div class="card">
+                <div class="card-body" style="border-radius: 10px;">
+                  <h3 class="card-title first-line-ellipses">PPF Calculator</h3>
+                  <div class="card-text td-inline-block third-line-ellipses">
+                    A Public Provident Fund (PPF) calculator is an online long-term investment tool designed to help investors calculate the potential returns and growth of their investments in a PPF account.It considers various factors such as the contribution amount, interest rate, and investment duration to estimate the maturity amount and the interest earned over a period.
+                  </div>
+                </div>
+              </div>
+            </a>
+          </div>
+
+        </div>
+
+        <!-- SIP calculator -->
+        <div class="row mt-2 py-1">
+          <div class="col-sm-6 mb-3 mb-sm-0">
+          <a href="{% url 'sip' %}" style="text-decoration: none">
+            <div class="card" style="border-radius: 10px;">
+              <div class="card-body">
+                <h3 class="card-title first-line-ellipses">SIP Calculator</h3>
+                <div class="card-text td-inline-block third-line-ellipses">
+                    SIP calculator is a simulation, which allows you to estimate the return on mutual fund investments made through SIP. Investing through SIPs in mutual funds is a popular investment option for millennials. SIP calculators are designed to give potential investors a heads up on their mutual fund investments. However, the actual return from the mutual fund scheme varies depending on several factors. The SIP calculator does not account for the exit load and expense ratio (if any). It is an online tool to calculate the SIP amount to achieve your financial goals, based on an expected annual return.
+                </div>
+              </div>
+            </div>
+          </a>
+          </div>
+
+          <!-- RD calculator -->
+          <div class="col-sm-6">
+            <a href="{% url 'rd' %}" style="text-decoration: none">
+              <div class="card">
+                <div class="card-body" style="border-radius: 10px;">
+                  <h3 class="card-title first-line-ellipses">RD Calculator</h3>
+                  <div class="card-text td-inline-block third-line-ellipses">
+                    RD or Recurring Deposits are an investment tool which allows investors to make regular monthly payments and save money for the long term. Investors can choose the tenure of the deposit and the minimum monthly payment they wish to make according to their convenience. RD schemes are generally more flexible than FD schemes and are generally preferred by those who want to start an account for the purpose of saving money and building a rainy-day fund.
+                  </div>
+                </div>
+              </div>
+            </a>
+          </div>
+
+        </div>
+
+        <!-- EMI calculator -->
+        <div class="row py-1 mt-2 pd-mb-pb-5">
+          <div class="col-sm-6 mb-3 mb-sm-0">
+            <a href="{% url 'emi' %}" style="text-decoration: none">
+              <div class="card" style="border-radius: 10px;">
+                <div class="card-body">
+                  <h3 class="card-title first-line-ellipses">EMI Calculator</h3>
+                  <div class="card-text td-inline-block third-line-ellipses">
+                    EMI or equated monthly instalment is the fixed payment that is made by the borrower to the lender. EMIs pay back both the principal and the interest for each month, and the loan is fully repaid within a specified number of years. Here, the borrower could be you, and the lender could be the bank that has given you the loan.
+                  </div>
+                </div>
+              </div>
+            </a>
+          </div>
+
+          <!-- Lumpsum calculator -->
+          <div class="col-sm-6">
+            <a href="{% url 'lumpsum' %}" style="text-decoration: none">
+              <div class="card">
+                <div class="card-body" style="border-radius: 10px;">
+                  <h3 class="card-title first-line-ellipses">Lumpsum Calculator</h3>
+                  <div class="card-text td-inline-block third-line-ellipses mb-10">
+                    A lump sum investment is depositing the entire amount at one go. Lump-sum investment is a popular way of investing in mutual funds. If you invest the entire amount available with you in a mutual fund scheme, it is called the lump-sum mutual fund investment. Lump-sum investing is a common mode of investment for HNIs and big-ticket investors.
+                  </div>
+                </div>
+              </div>
+            </a>
+          </div>
+
+        </div>
+
+        </div>
+      </section>
+
+    </main>
+
+{% endblock %}

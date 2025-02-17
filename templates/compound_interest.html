@@ -1,0 +1,110 @@
+{% extends 'base.html' %}
+  {% block body_block %}
+  {% load static %}
+  <!-- breadcrumb for the sites -->
+  <div class="container mt-3">
+    <nav style="--bs-breadcrumb-divider: '>';color: #011638;">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item fs-6 fw-medium"><a href="{% url 'index' %}">Home</a></li>
+        <li class="breadcrumb-item active fs-6 fw-medium" style="color: #011638">Compound Interest</li>
+      </ol>
+    </nav>
+  </div>
+  <!-- end of breadcrumb -->
+
+  <main>
+        <div class="container mt-5">
+            <div class="row">
+                <div class="col-md-8 d-flex">
+                    <div class="card shadow p-4 equal-height w-100" style="background-color: #fbfbfb; color: #011638;">
+                        <h2 class="text-center fs-3 fw-semibold">Compound Interest Calculator</h2>
+                        <form id="interestForm" class="flex-grow-1">
+                          <div class="mb-3" oninput="calculateInterest()">
+                            <label for="principal" class="form-label fs-5 fw-medium">Principal Amount:</label>
+                            <input type="number" class="form-control" id="principal" value="10000" required>
+                            <div class="text-danger" id="principalError"></div>
+                        </div>
+                        <div class="mb-3" oninput="calculateInterest()">
+                            <label for="rate" class="form-label fs-5 fw-medium">Rate of Interest (in % per annum):</label>
+                            <input type="number" class="form-control" id="rate" value="10" required>
+                            <div class="text-danger" id="rateError"></div>
+                        </div>
+                        <div class="mb-3" oninput="calculateInterest()">
+                            <label for="time" class="form-label fs-5 fw-medium">Time Period (in years):</label>
+                            <input type="number" class="form-control" id="time" value="1" required>
+                            <div class="text-danger" id="timeError"></div>
+                        </div>
+                        <div class="mb-3" oninput="calculateInterest()">
+                          <label for="period" class="form-label fs-5 fw-medium">Period Unit:</label>
+                          <select name="period" id="period" class="form-control" required>
+                            <option value="12">Monthly</option>
+                            <option value="4">Quarterly</option>
+                            <option value="2">Semi-annually</option>
+                            <option value="1">Yearly</option>
+                          </select>
+                          <div class="text-danger" id="periodError"></div>
+                        </div>
+                            <!-- <button type="button" class="btn btn-primary w-100" onclick="calculateInterest()">Calculate</button> -->
+                        </form>
+                    </div>
+                </div>
+                <div class="col-md-4 d-flex">
+                    <div class="card shadow p-4 equal-height w-100" style="background-color: #fbfbfb; color: #011638;">
+                        <div class="flex-grow-1 d-flex align-items-center justify-content-center">
+                          <canvas id="interestChart" class="mt-4"></canvas>
+                        </div>
+                        <div class="text-center mt-4">
+                          <p class="fs-5 fw-medium">Principal: ₹<span id="displayPrincipal">10000</span></p>
+                          <p class="fs-5 fw-medium">Compound Interest: ₹<span id="displayInterest">1000</span></p>
+                          <p class="fs-5 fw-medium">Total Amount: ₹<span id="displayTotal">11000</span></p>
+                      </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+  </main>
+
+  <!-- details section with other calculator links -->
+  <section>
+    <div class="container mt-5">
+      <div class="row">
+        <!-- Information on Simple interest -->
+        <div class="col-md-8 d-flex">
+          <div class="card shadow w-100">
+            <div class="container text-start mt-4" style="color:#011638;">
+              <p class="fs-4 fw-semibold text-capitalize">What is compound Interest?</h3>
+              <p class="fs-6 fw-medium lh-sm">Compound interest is interest accumulated from a principal sum and previously accumulated interest. It is the result of reinvesting or retaining interest that would otherwise be paid out, or of the accumulation of debts from a borrower. Below is its mathematical formula:</p>
+              <p class="fs-5 fw-medium fst-italic text-uppercase">A = P(1+r/n)<sup>nt</sup></p>
+                <ul>
+                  <li class="text-capitalize">P = principal amount</li>
+                  <li class="text-capitalize">r = annual interest rate</li>
+                  <li class="text-capitalize">t = time (in years)</li>
+                  <li class="text-capitalize">n = n is the compounding frequency (1: annually, 2: semi-anually, 4: quarterly, 12: monthly)</li>
+                  <li class="text-capitalize">A = total amount</li>
+                </ul>
+              <p class="fs-5 fw-medium fst-italic">Interest = A - P</p>
+            </div>    
+          </div>
+        </div>
+        <!-- Links to various other calculators -->
+        <div class="col-md-4 d-flex">
+          <div class="card shadow w-100">
+            <div class="container text-start mt-4" style="color:#011638;">
+              <p class="fs-4 fw-medium"><strong>Other Calculators</strong></h4>
+              <p><a href="{% url 'simple' %}" class="nav-link fs-6 fw-medium" onmouseover="this.style.color='blue'" onmouseout="this.style.color='#011638'">Simple Interest</a></p>
+              <p><a href="{% url 'fd' %}" class="nav-link fs-6 fw-medium" onmouseover="this.style.color='blue'" onmouseout="this.style.color='#011638'">FD Calculator</a></p>
+              <p><a href="{% url 'ppf' %}" class="nav-link fs-6 fw-medium" onmouseover="this.style.color='blue'" onmouseout="this.style.color='#011638'">PPF Calculator</a></p>
+              <p><a href="{% url 'sip' %}" class="nav-link fs-6 fw-medium" onmouseover="this.style.color='blue'" onmouseout="this.style.color='#011638'">SIP Calculator</a></p>
+              <p><a href="{% url 'rd' %}" class="nav-link fs-6 fw-medium" onmouseover="this.style.color='blue'" onmouseout="this.style.color='#011638'">RD Calculator</a></p>
+              <p><a href="{% url 'emi' %}" class="nav-link fs-6 fw-medium" onmouseover="this.style.color='blue'" onmouseout="this.style.color='#011638'">EMI Calculator</a></p>
+              <p><a href="{% url 'lumpsum' %}" class="nav-link fs-6 fw-medium" onmouseover="this.style.color='blue'" onmouseout="this.style.color='#011638'">Lumpsum Calculator</a></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script src="{% static '/js/compoundInterest.js' %}"></script>
+
+  {% endblock %}
